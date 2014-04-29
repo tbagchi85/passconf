@@ -1,0 +1,11 @@
+.alert {
+  font-size: 14px;
+
+}
+.alert-danger, .alert-error {
+  background-color: #F2DEDE;
+  border-color: #EED3D7;
+  color: #B94A48;
+  height: 25px;
+  vertical-align:middle;
+}
