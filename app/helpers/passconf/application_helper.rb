@@ -5,8 +5,8 @@ module Passconf
         @req_controller = params[:controller]
         @password_status = current_user.send("password_status_#{@req_controller }") if current_user.respond_to?("password_status_#{@req_controller }")
         unless @password_status
-          flash[:error] = "You did not authorize password authentication."
-          redirect_to root_path
+
+          redirect_to root_path, notice: "You did not authorize password authentication."
         end
       end
     end
