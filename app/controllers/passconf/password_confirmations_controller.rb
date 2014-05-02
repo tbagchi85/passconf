@@ -2,9 +2,9 @@ require_dependency "passconf/application_controller"
 
 module Passconf
   class PasswordConfirmationsController < ApplicationController
+    skip_before_filter :reset_password_status
 
     def password_dialog
-
       @current_controller_name = params[:controller_name]
       respond_to do |format|
         format.js
@@ -16,15 +16,9 @@ module Passconf
       @status = current_user.valid_password?(decrypt_password)
       @link_name = params[:user][:link_name]
       @current_controller_name = params[:user][:controller_name]
-      if @status
-        if @link_name == "profile"
-          current_user.update_attribute(:password_status_profile, true)
-        elsif @link_name == "phr"
-          current_user.update_attribute(:password_status_phr, true)
-        end
-        @pasword_auth_status = "true"
-      else
-        @pasword_auth_status = "false"
+      field_name = "password_status_#{@current_controller_name}"
+      if @status && !field_name.blank?
+        current_user.update_attribute(field_name, true)  if current_user.respond_to?(field_name)
       end
       respond_to do |format|
         format.js
