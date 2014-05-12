@@ -1,5 +1,4 @@
-# Passconf
-
+# Passconf   [![Code Climate](https://codeclimate.com/github/tbagchi85/passconf.png)](https://codeclimate.com/github/tbagchi85/passconf)
 This is a nice and simple full Rails Engine where use can authorize Password before continue to a Rails Controller action.
 
 Basically In high secure web site like Banking or HealthCare domain before get enter into Rails Controller action
